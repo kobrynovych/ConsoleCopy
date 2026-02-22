@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Console Copy - Test Page</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    button {
+      background: white;
+      color: #667eea;
+      border: none;
+      padding: 12px 24px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .info {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎯 Console Copy Test Page</h1>
+
+  <div class="section">
+    <h2>🎨 Basic Log Types</h2>
+    <div class="button-group">
+      <button onclick="generateBasicLogs()">Generate All Basic Logs</button>
+      <button onclick="console.log('This is a regular log message')">Log</button>
+      <button onclick="console.info('ℹ️ This is an info message')">Info</button>
+      <button onclick="console.warn('⚠️ This is a warning message')">Warn</button>
+      <button onclick="console.error('❌ This is an error message')">Error</button>
+      <button onclick="console.debug('🐛 This is a debug message')">Debug</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Network & Errors</h2>
+    <div class="button-group">
+      <button onclick="generateNetworkError()">Network Error</button>
+      <button onclick="generateUncaughtError()">Uncaught Error</button>
+      <button onclick="generatePromiseRejection()">Promise Rejection</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📊 Advanced Logs</h2>
+    <div class="button-group">
+      <button onclick="generateTable()">Table</button>
+      <button onclick="generateGroup()">Group</button>
+      <button onclick="generateObjects()">Objects & Arrays</button>
+      <button onclick="generateMixedLogs()">Mixed Content</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎬 Demo Scenarios</h2>
+    <div class="button-group">
+      <button onclick="generateUserActionScenario()">User Action Scenario</button>
+      <button onclick="generateAPIScenario()">API Call Scenario</button>
+      <button onclick="generateErrorScenario()">Error Handling Scenario</button>
+      <button onclick="generateFullDemo()">Full Demo (All Logs)</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🧹 Utilities</h2>
+    <div class="button-group">
+      <button onclick="console.clear()">Clear Console</button>
+      <button onclick="generateTimestampedLogs()">Timestamped Logs</button>
+      <button onclick="generateLongLog()">Long Log Message</button>
+    </div>
+  </div>
+
+  <script>
+    // Basic logs
+    function generateBasicLogs() {
+      console.log('📝 Regular log message');
+      console.info('ℹ️ Information: Application started successfully');
+      console.warn('⚠️ Warning: API rate limit approaching');
+      console.error('❌ Error: Failed to load user data');
+      console.debug('🐛 Debug: Variable value =', { x: 10, y: 20 });
+    }
+
+    // Network error
+    function generateNetworkError() {
+      fetch('https://nonexistent-api-12345.com/data')
+        .catch(err => console.error('🌐 Network Error:', err.message));
+    }
+
+    // Uncaught error
+    function generateUncaughtError() {
+      setTimeout(() => {
+        throw new Error('Uncaught exception: Something went wrong!');
+      }, 100);
+    }
+
+    // Promise rejection
+    function generatePromiseRejection() {
+      Promise.reject(new Error('Promise rejected: Authentication failed'))
+        .catch(err => console.error('Promise Rejection:', err));
+    }
+
+    // Table
+    function generateTable() {
+      const users = [
+        { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+        { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+        { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'Editor' }
+      ];
+      console.table(users);
+    }
+
+    // Group
+    function generateGroup() {
+      console.group('🔐 User Authentication');
+      console.log('Step 1: Validating credentials');
+      console.log('Step 2: Checking permissions');
+      console.log('Step 3: Creating session');
+      console.groupEnd();
+
+      console.group('📦 Data Processing');
+      console.log('Processing item 1...');
+      console.log('Processing item 2...');
+      console.log('Processing item 3...');
+      console.groupEnd();
+    }
+
+    // Objects and arrays
+    function generateObjects() {
+      console.log('User object:', {
+        id: 12345,
+        username: 'johndoe',
+        email: 'john@example.com',
+        preferences: {
+          theme: 'dark',
+          notifications: true
+        }
+      });
+
+      console.log('Shopping cart:', [
+        { product: 'Laptop', price: 999, quantity: 1 },
+        { product: 'Mouse', price: 29, quantity: 2 },
+        { product: 'Keyboard', price: 79, quantity: 1 }
+      ]);
+    }
+
+    // Mixed content
+    function generateMixedLogs() {
+      console.log('String:', 'Hello World');
+      console.log('Number:', 42);
+      console.log('Boolean:', true);
+      console.log('Null:', null);
+      console.log('Undefined:', undefined);
+      console.log('Function:', function test() { });
+      console.log('Date:', new Date());
+      console.log('RegExp:', /test/gi);
+    }
+
+    // User action scenario
+    function generateUserActionScenario() {
+      console.group('👤 User Action: Login');
+      console.log('User clicked login button');
+      console.info('Validating form data...');
+      console.log('Form data:', { username: 'user@example.com', password: '***' });
+      console.info('Sending authentication request...');
+      console.log('Response received:', { success: true, token: 'abc123...' });
+      console.info('✅ Login successful');
+      console.groupEnd();
+    }
+
+    // API scenario
+    function generateAPIScenario() {
+      console.group('🌐 API Call: Fetch User Data');
+      console.log('GET /api/users/123');
+      console.info('Request headers:', { 'Authorization': 'Bearer token123' });
+      console.log('Response status: 200 OK');
+      console.log('Response data:', {
+        id: 123,
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+      console.info('✅ Data fetched successfully');
+      console.groupEnd();
+    }
+
+    // Error scenario
+    function generateErrorScenario() {
+      console.group('❌ Error Handling Scenario');
+      console.log('Attempting to process payment...');
+      console.warn('⚠️ Payment gateway response delayed');
+      console.error('❌ Payment failed: Insufficient funds');
+      console.log('Error details:', {
+        code: 'INSUFFICIENT_FUNDS',
+        message: 'Account balance too low',
+        balance: 50,
+        required: 100
+      });
+      console.info('Sending error notification to user...');
+      console.groupEnd();
+    }
+
+    // Full demo
+    function generateFullDemo() {
+      console.clear();
+      console.log('🚀 Console Copy - Full Demo Started');
+      console.log('─'.repeat(50));
+
+      setTimeout(() => generateBasicLogs(), 100);
+      setTimeout(() => generateObjects(), 300);
+      setTimeout(() => generateTable(), 500);
+      setTimeout(() => generateGroup(), 700);
+      setTimeout(() => generateUserActionScenario(), 1000);
+      setTimeout(() => generateAPIScenario(), 1500);
+      setTimeout(() => {
+        console.warn('⚠️ Demo warning: Some operations may fail');
+      }, 2000);
+      setTimeout(() => generateNetworkError(), 2200);
+      setTimeout(() => {
+        console.log('─'.repeat(50));
+        console.log('✅ Demo completed!');
+      }, 2500);
+    }
+
+    // Timestamped logs
+    function generateTimestampedLogs() {
+      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      console.log(`[${timestamp}] Application started`);
+      console.log(`[${timestamp}] Loading configuration...`);
+      console.log(`[${timestamp}] Configuration loaded successfully`);
+      console.log(`[${timestamp}] Initializing modules...`);
+      console.log(`[${timestamp}] All modules initialized`);
+    }
+
+    // Long log
+    function generateLongLog() {
+      console.log('This is a very long log message that demonstrates how Console Copy handles lengthy text content. It includes multiple sentences and continues for quite a while to show text wrapping and display capabilities. This helps demonstrate the extension\'s ability to handle various log message lengths and formats effectively.');
+    }
+
+    // Auto-generate some initial logs on page load
+    window.addEventListener('load', () => {
+      console.log('🎯 Console Copy Test Page Loaded');
+      console.info('ℹ️ Click buttons above to generate different types of console logs');
+      console.log('💡 Tip: Open DevTools (F12) and navigate to "Console Copy" tab');
+    });
+  </script>
+</body>
+
+</html>
